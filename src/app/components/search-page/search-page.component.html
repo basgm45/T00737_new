@@ -1,0 +1,29 @@
+<!-- <p>search-page works!</p> -->
+
+<form [formGroup]="saleForm" (ngSubmit)="onSearch(saleForm)">
+    <div class="p-grid">
+      <div class="p-col-2"></div>
+      <div class="p-col-1" style="text-align: right;"><span>First Name:</span></div>
+      <div class="p-col-3"><input type="text" pInputText formControlName="firstName" /></div>
+      <div class="p-col-1" style="text-align: right;"><span>Last Name:</span> </div>
+      <div class="p-col-3"><input type="text" pInputText formControlName="lastName" /></div>
+      <div class="p-col-2"></div>
+      <div class="p-col-2"></div>
+      <div class="p-col-1" style="text-align: right;"><span>Email:</span></div>
+      <div class="p-col-3"><input type="text" pInputText formControlName="email" /></div>
+      <div class="p-col-1" style="text-align: right;"><span>Product:</span> </div>
+      <div class="p-col-3">
+        <p-dropdown [options]="productList" placeholder="Select Product" optionLabel="productName" [showClear]="true"
+          formControlName="productId"></p-dropdown>
+      </div>
+      <div class="p-col-2"></div>
+      <div class="p-col-5"></div>
+      <div class="p-col-2">
+        <button pButton type="submit" label="ค้นหา"></button>
+        <button pButton type="button" label="ยกเลิก" (click)=resetForm()></button>
+      </div>
+      <div class="p-col-5"></div>
+    </div>
+  </form>
+  <app-result-list [orderList]="orderList"></app-result-list>
+  

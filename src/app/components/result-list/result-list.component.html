@@ -1,0 +1,39 @@
+<div class="p-grid">
+    <div class="p-col-10" style="text-align: right;">
+        <!-- <button pButton type="button" label="เพิ่ม"
+            (click)="goToadd()"></button> -->
+        <button pButton type="button" label="เพิ่ม" class="ui-button-rounded" (click)="goToadd()"></button>
+    </div>
+</div>
+<div class="p-grid">
+    <div class="p-col-2"></div>
+    <div class="p-col-8">
+        <p-table [value]="orderList">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th>ชื่อ - นามสกลุ</th>
+                    <th>ชื่อสินค้า</th>
+                    <th>รายละเอียดสินค้า</th>
+                    <th>อีเมล์</th>
+                    <th>เบอร์โทร </th>
+                    <th ></th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-car let-rowIndex="rowIndex">
+                <tr>
+                    <td>{{car.customer.fullName}}</td>
+                    <td>{{car.product.productName}}</td>
+                    <td>{{car.product.productDesc}}</td>
+                    <td>{{car.customer.email}}</td>
+                    <td>{{car.customer.tel}}</td>
+                    <td style="text-align: center"><button style="width: 33%;" pButton type="button" label="แก้ไข"
+                            (click)="goToEdit(car)"></button>
+                        <button style="width: 33%;" pButton type="button" label="ลบ"
+                            class="ui-button-raised ui-button-danger" (click)="delete(rowIndex)"></button>
+
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+    <div class="p-col-2"></div>
+</div>

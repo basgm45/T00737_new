@@ -1,0 +1,60 @@
+<form [formGroup]="orderForm" (ngSubmit)="onSumit(orderForm)">
+    <div class="p-grid">
+        <div class="p-col-2"></div>
+        <div class="p-col-2" style="text-align: right;">Order Date:</div>
+        <div class="p-col-8">
+            <p-calendar [showIcon]="true" formControlName="orderDate" dateFormat="dd/mm/yy"></p-calendar>
+            <p-message severity="error" text="Field is required"
+                *ngIf="orderForm.get('orderDate').touched&&orderForm.get('orderDate').hasError('required')">
+            </p-message>
+        </div>
+        <div class="p-col-2"></div>
+        <div class="p-col-2" style="text-align: right;">Product:</div>
+        <div class="p-col-8">
+            <p-dropdown [options]="product" optionLabel="productName" placeholder="Select Product"            
+                formControlName="product"></p-dropdown>
+            <p-message severity="error" text="Field is required"
+                *ngIf="orderForm.get('product').touched&& orderForm.get('product').hasError('required')">
+            </p-message>
+        </div>
+
+        <div class="p-col-2"></div>
+        <div class="p-col-2" style="text-align: right;">Customer:</div>
+        <div class="p-col-8">
+            <p-dropdown [options]="customerList" optionLabel="fullName" placeholder="Select Customer"
+                formControlName="customer"></p-dropdown>
+            <p-message severity="error" text="Field is required"
+                *ngIf="orderForm.get('customer').touched&& orderForm.get('customer').hasError('required')">
+            </p-message>
+        </div>
+
+        <div class="p-col-2"></div>
+        <div class="p-col-2" style="text-align: right;">Amount:</div>
+        <div class="p-col-8"><input type="text" pInputText formControlName="amount" />
+            <p-message severity="error" text="Field is required"
+                *ngIf="orderForm.get('amount').touched&& orderForm.get('amount').hasError('required')">
+            </p-message>
+        </div>
+
+        <div class="p-col-2"></div>
+        <div class="p-col-2" style="text-align: right;">Total:</div>
+        <div class="p-col-8"><input type="text" pInputText disabled
+                [value]="orderForm.get('amount').value&&orderForm.get('product').value.price?orderForm.get('amount').value*orderForm.get('product').value.price:0" />
+        </div>
+
+        <ng-container *ngIf="service.order">
+            <div class="p-col-2"></div>
+            <div class="p-col-2" style="text-align: right;">Status:</div>
+            <div class="p-col-8">
+                <p-inputSwitch formControlName="status"></p-inputSwitch>
+            </div>
+        </ng-container>
+
+        <div class="p-col-12" style="text-align: center;">
+            <button pButton type="submit" label="บันทึก"></button>
+            <button pButton type="button" label="ยกเลิก" (click)="resetForm()"></button>
+            <button pButton type="button" label="กลับ" [routerLink]="['/search']"></button>
+        </div>
+
+    </div>
+</form>
