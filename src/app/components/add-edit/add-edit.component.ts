@@ -97,11 +97,15 @@ export class AddEditComponent implements OnInit {
         this.service.editOrder(data).subscribe(res => {
           console.log('testEdit', res)
           window.alert('แก้ไขเรียบร้อยแล้ว');
-          this.route.navigateByUrl('/search');
+          // window.location.reload();
+          this.resetForm();
         });
       } else {
         this.service.addOrder(data).subscribe(res => {
           console.log('testAdd', res);
+          window.alert('บันทึกสำเเร็จ');
+          // window.location.reload();
+          this.resetForm();
         });
       }
 

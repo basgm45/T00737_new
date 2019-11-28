@@ -23,8 +23,10 @@ export class ResultListComponent implements OnInit {
     console.log(id);
 
     this.service.deleteOrder(id).subscribe(res => {
-      this.orderList.splice(id, 1)
-    })
+      this.orderList.splice(id, 1);
+      window.alert('ลบสำเร็จ');
+
+    });
   }
   goToadd() {
     this.service.order = null;
