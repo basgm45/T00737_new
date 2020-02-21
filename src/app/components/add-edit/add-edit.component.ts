@@ -14,6 +14,7 @@ export class AddEditComponent implements OnInit {
   product: Product[] = [];
   orderForm: FormGroup;
   customerList: Customer[] = [];
+
   constructor(public service: ServiceAllService, private route: Router) { }
 
   ngOnInit() {
@@ -25,6 +26,7 @@ export class AddEditComponent implements OnInit {
       product: new FormControl('', Validators.required),
       status: new FormControl(''),
       total: new FormControl(0)
+
     });
     this.service.getProduct().subscribe(res => {
       //  res.map(val => {
@@ -34,7 +36,7 @@ export class AddEditComponent implements OnInit {
       //     }
       //   }); 
       // ลบข้อมูล ใน Array ออกจาก table เพื่อให้ข้อมูลตรงก่อนก่อนเข้า patchvalue
-      res.forEach(val => { delete val.productDesc });
+      res.forEach(val => { delete val.productDesc; });
       this.product = res;
       console.log(res);
 
@@ -85,7 +87,14 @@ export class AddEditComponent implements OnInit {
 
     }
 
+    this.testConst();
+  }
+  testConst() {
+    const x = { test: '555' };
 
+    const y = { ...x, name: 'Hallo' };
+    console.log(y);
+    
   }
   onSumit(form: FormGroup) {
 
@@ -117,5 +126,6 @@ export class AddEditComponent implements OnInit {
   resetForm() {
     this.orderForm.reset();
   }
+
 
 }
