@@ -125,6 +125,8 @@ export class AddEditComponent implements OnInit {
   }
   resetForm() {
     this.orderForm.reset();
+    console.log("testRebase");
+    
   }
 
 
